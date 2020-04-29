@@ -1,0 +1,26 @@
+.flex-column .navbar .navbar-expand-lg .navbar-dark .bg-dark
+{
+    width:30%;
+}
+
+.izbornik{
+
+    background-color: rgba(31,31, 31, 0.8) !important;
+    width: 200px;
+    height:100%;
+    color: white;
+    padding:2px;
+    
+ 
+}
+
+.btn{
+    margin: 2px;
+}
+
+
+
+
+
+
+
