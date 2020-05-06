@@ -3,31 +3,31 @@ import logo from './logo.svg';
 import './App.css';
 import Home from './routes/Home';
 import Navigation from './components/Nav';
-import Section from './components/Section';
-import {library} from '@fortawesome/fontawesome-svg-core';
-import {faStore, faShoppingCart, faHome} from '@fortawesome/free-solid-svg-icons';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Kitchen from './components/Products/Kitchen/Kitchen';
-import Bedroom from './components/Products/Bedroom/Bedroom';
-import Bathroom from './components/Products/Bathroom/Bathroom';
-import LivingRoom from './components/Products/LivingRoom/LivingRoom';
-import EveryDay from './components/Products/EveryDay/EveryDay';
+import ProductList from './components/Products/ProductList';
 
-library.add(faStore, faShoppingCart, faHome);
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faStore, faShoppingCart, faHome, faBlender, faCouch, faBed, faShower, faRunning, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
+
+library.add(faStore, faShoppingCart, faHome, faBlender, faCouch, faBed, faShower, faRunning, faPlus);
 
 function App() {
   return (
     <Router>
+      
     <div className="App">
-      <Navigation/>
+   <Navigation/>
     <Switch>
 
       <Route path="/" exact component={Home}/>
-      <Route path="/section" exact component={Section}/>
+      <Route path="/productlist" component={ProductList}/>
+     
       
     </Switch>
 
     </div>
+
     </Router>
   );
 }

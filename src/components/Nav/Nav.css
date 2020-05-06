@@ -1,0 +1,9 @@
+.nav-link{
+    color:white !important;
+}
+
+.nav-link:hover{
+    font-weight: bold !important;
+    font-size: 18px !important;
+}
+

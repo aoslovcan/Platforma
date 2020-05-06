@@ -11,12 +11,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import {Toolbar, SimpleButton} from '@terrestris/react-geo';
 
 
-import './Home.css';
-
-
-
-
-export const Home = (props) => {
+export const ProductList = () => {
  
 
   
@@ -26,7 +21,7 @@ export const Home = (props) => {
      
 <>
 
- <h1>Ovo je home page</h1>
+ <h1>Ovdje idu uređaji</h1>
 
 </>
     );
