@@ -26,6 +26,7 @@ return (
 
     <Nav className="mr-auto">
     <Nav.Link href="/productlist"><strong>Uređaji</strong></Nav.Link>
+    <Nav.Link href="/create"><FontAwesomeIcon className="fa-lg" style={{border:'1px solid white', borderRadius:'50px', padding:'3px'}} icon="plus"/></Nav.Link>
     </Nav>
     <Nav>
     <Form inline>
