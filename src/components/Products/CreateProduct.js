@@ -8,6 +8,8 @@ import FormControl from 'react-bootstrap/FormControl';
 
 import {Toolbar, SimpleButton} from '@terrestris/react-geo';
 
+import axios from 'axios'
+import {createDevice} from '../../actions/createDevice';
 
 
 
@@ -18,32 +20,64 @@ class  CreateProduct extends Component {
         super(props)
 
         this.state = {
-            userId: '',
+         
             name : '',
             price: '',
-            description: ''
-
+            description: '',
+            redirect: false
         }
-    }
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+    }  
     
-    changeHandler = (x) => {
+    changeHandler = x => {
         this.setState({[x.target.name]: x.target.value})
     }
- 
-    submitHandler = e => {
 
-        e.preventDefault()
-        console.log(this.state)
-    }
+   
+
+  
+    handleSubmit(e){
+      e.preventDefault();
+      const data = this.state;
+      console.log(data);
+    
+    fetch('http://localhost:3001/new', {
+        method: 'POST',  
+        body: JSON.stringify({name : this.state.name,
+        price: this.state.price,
+      description: this.state.description
+
+  }),  
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+     
+      .then((result) => {
+        console.log(result);
+        
+        this.setState({redirect : true});
+       window.location.href = 'http://localhost:3000/productlist';
+    })
+      }
+
+   
 
 
-   render(){
-       const{name, price, description} = this.state
+  
+
+render(){
+
+     const{name, price, description} = this.state
      return(
             <> 
+            <h3></h3>
             <div className="container">
             <div className="row">
-<form onSubmit={this.submitHandler}>
+<form onSubmit={this.handleSubmit}  action={this.props.action}
+                    method={this.props.method} >
   <div className="form-group">
   
     <input type="text" 
@@ -94,7 +128,14 @@ class  CreateProduct extends Component {
     
   }
 
-}
+} 
+
+CreateProduct.defaultProps = {
+  action: 'http://localhost:3001/new',
+  method: 'post'
+};
+
+
 export default CreateProduct;
     
 

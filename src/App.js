@@ -15,6 +15,7 @@ import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CreateProduct from './components/Products/CreateProduct';
 
 
+
 library.add(faStore, faShoppingCart, faHome, faBlender, faCouch, faBed, faShower, faRunning, faPlus);
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
       <Route path="/" exact component={Home}/>
       <Route path="/productlist" component={ProductList}/>
       <Route path="/create" component={CreateProduct}/>
+      <Route path="http://localhost:3001/new" component={CreateProduct}/>
+      
      
       
     </Switch>

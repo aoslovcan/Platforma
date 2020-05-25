@@ -11,7 +11,6 @@ import {Toolbar, SimpleButton} from '@terrestris/react-geo';
 
 
 
-
 class  ProductList extends Component {
     constructor(props){
         super(props);
@@ -29,12 +28,38 @@ class  ProductList extends Component {
             this.setState({
                 isLoaded:true,
                 items : json,
+                id: ''
 
             })
 
         });
 
         console.log(this.state.items);
+    }
+
+    deleteMember(){
+        var data = {
+            id: this.state.id
+        }
+        console.log(data);
+        fetch("http://localhost:3001/delete", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            if (response.status >= 400) {
+              throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(data) {
+            if(data === "success"){
+               this.setState({msg: "User has been deleted."});
+               window.location.reload();
+            }
+           
+        }).catch(function(err) {
+            console.log(err)
+        });
     }
  
 
@@ -73,6 +98,10 @@ class  ProductList extends Component {
                    <li className="list-group-item" >
                    {item.description}
                 
+                   </li>
+
+                   <li className="list-group-item">
+                   <button type="submit" onClick={() => this.setState({id : item.devices_id}, this.deleteMember)} className="btn btn-primary">Delete</button>
                    </li>
                    
                    </ul>
