@@ -2,13 +2,8 @@ import React, { Component } from 'react';
  
 import Button from 'react-bootstrap/Button'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {Tooltip, Drawer} from 'antd';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 
-import {Toolbar, SimpleButton} from '@terrestris/react-geo';
-
-
+import './ProductList.css';
 
 
 class  ProductList extends Component {
@@ -29,9 +24,7 @@ class  ProductList extends Component {
                 isLoaded:true,
                 items : json,
                 id: ''
-
             })
-
         });
 
         console.log(this.state.items);
@@ -65,49 +58,45 @@ class  ProductList extends Component {
 
 
    render(){
+        var {isLoaded, items} = this.state;
 
-    var {isLoaded, items} = this.state;
-
-    if(!isLoaded){
+        if(!isLoaded){
         return <div>Loading...</div>;
-    }
-   
-   
-    else{
+        }
+        else{
 
         return(
             <>
-        
-    <div className="row" style={{margin:'2px'}}>
+        <div className="proizvodi">
+            <h3 style={{color:'black'}}>Pametni uređaji iz kućanstva</h3>
+           <div className="row" style={{margin:'2px'}}>
           
-               {items.map(item => (
-                   <div className="col-sm-3">
-            <ul className="list-group" key={item.id}>
+            {items.map(item => (
+            <div className="col-sm-3">
+             <ul className="list-group" key={item.id}>
                 <li className="list-group-item">
-                <img style={{maxWidth:'200px', width:'100%'}} src={item.image}></img>
+                <img style={{maxWidth:'200px', width:'100%'}} src={item.image}/>
                 </li>
-             
-                   <li className="list-group-item" >
+                 <li className="list-group-item" >
                   {item.name}
-                
-                   </li>
-                   <li className="list-group-item" >
-                   ${item.price}
-                
-                   </li>
-                   <li className="list-group-item" >
+                </li>
+                <li className="list-group-item" >
+                   <strong>${item.price}</strong>
+                </li>
+                <li className="list-group-item" >
                    {item.description}
-                
-                   </li>
-
-                   <li className="list-group-item">
-                   <button type="submit" onClick={() => this.setState({id : item.devices_id}, this.deleteMember)} className="btn btn-primary">Delete</button>
-                   </li>
+                </li>
+                <li className="list-group-item">
+                   <button type="submit" onClick={() => this.setState({id : item.devices_id}, this.deleteMember)} > 
+                   <FontAwesomeIcon color="red" icon="trash"/>
                    
-                   </ul>
-                   </div>
+                    </button>
+                </li>
+            </ul>
+            </div>
                ))}
            </div>
+        </div>
             </>
        
       

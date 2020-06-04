@@ -1,0 +1,19 @@
+.proizvodi{
+
+    padding: 1px;
+    color : white;
+}
+
+ul{
+    color:black;
+    text-align: left;
+  
+}
+
+.list-group-item{
+    background-color: rgb(255, 255, 255, 0.3);
+  
+}
+
+
+

@@ -78,9 +78,11 @@ server.get('/devices', function (req, res) {
  server.post('/new',  function(req, res) {
      data = req.body;
 
+     
+
      console.log(data.name + ' ' + data.price + ' ' + data.description);
 
-     var sql = "INSERT INTO devices(name, price, description) VALUES('"+ data.name +" ',' "+ data.price +" ',' "+ data.description +"')";
+     var sql = "INSERT INTO devices(name, price, description, image) VALUES('"+ data.name +" ',' "+ data.price +" ',' "+ data.description +" ',' "+ data.image +"')";
 
      //var sql = "INSERT INTO devices(name, price) VALUES('"+ data.name +" ',' "+ data.price +")";
 

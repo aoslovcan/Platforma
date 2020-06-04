@@ -8,7 +8,7 @@ import ProductList from './components/Products/ProductList/ProductList';
 import {library} from '@fortawesome/fontawesome-svg-core';
 
 import {faStore, faShoppingCart, faHome, faBlender, faCouch,
-   faBed, faShower, faRunning, faPlus} 
+   faBed, faShower, faRunning, faPlus, faTrash, faHeart} 
    from '@fortawesome/free-solid-svg-icons';
    
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -16,7 +16,7 @@ import CreateProduct from './components/Products/CreateProduct';
 
 
 
-library.add(faStore, faShoppingCart, faHome, faBlender, faCouch, faBed, faShower, faRunning, faPlus);
+library.add(faStore, faShoppingCart, faHome, faBlender, faCouch, faBed, faShower, faRunning, faPlus, faTrash, faHeart);
 
 function App() {
   return (
