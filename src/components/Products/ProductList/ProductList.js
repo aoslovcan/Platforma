@@ -2,6 +2,7 @@ import React, { Component } from 'react';
  
 import Button from 'react-bootstrap/Button'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {Link} from 'react-router-dom';
 
 import './ProductList.css';
 
@@ -12,6 +13,7 @@ class  ProductList extends Component {
         this.state = {
             items: [],
             isLoaded: false,
+            redirect : false
         }
     }
 
@@ -25,9 +27,38 @@ class  ProductList extends Component {
                 items : json,
                 id: ''
             })
+            console.log(json)
         });
 
         console.log(this.state.items);
+    }
+
+    getData(){
+        var data ={
+                id:this.state.id,
+               
+        }
+
+        console.log(data);
+        fetch("http://localhost:3001/devices/id", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        }).then(function(response) {
+            if (response.status >= 400) {
+              throw new Error("Bad response from server");
+            }
+            return response.json();
+        }).then(function(data) {
+            if(data === "success"){
+             console.log('Uspješno uneseno');
+            }
+           
+        }).catch(function(err) {
+            console.log(err)
+        });
+
+      
     }
 
     deleteMember(){
@@ -46,8 +77,7 @@ class  ProductList extends Component {
             return response.json();
         }).then(function(data) {
             if(data === "success"){
-               this.setState({msg: "User has been deleted."});
-               window.location.reload();
+             console.log('Uspješno uneseno');
             }
            
         }).catch(function(err) {
@@ -87,10 +117,20 @@ class  ProductList extends Component {
                    {item.description}
                 </li>
                 <li className="list-group-item">
-                   <button type="submit" onClick={() => this.setState({id : item.devices_id}, this.deleteMember)} > 
+                   <button type="submit" 
+                   onClick={() => this.setState({id : item.devices_id},
+                     this.deleteMember, window.location.reload(false))} > 
                    <FontAwesomeIcon color="red" icon="trash"/>
                    
                     </button>
+                    <button type="submit"  onClick={() => this.setState({id : item.devices_id},
+                     this.getData)}>
+                         
+                         <strong><FontAwesomeIcon color="red" icon="pen"/></strong></button>
+
+                        {/*<Link className="btn" to={`/update/${item.devices_id}/${item.name}/${item.description}/${item.price}/${item.image}`}> Edit</Link>*/} 
+
+                           <Link className="btn" to={`/update/${item.devices_id}`}> Edit</Link>
                 </li>
             </ul>
             </div>

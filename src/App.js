@@ -8,15 +8,16 @@ import ProductList from './components/Products/ProductList/ProductList';
 import {library} from '@fortawesome/fontawesome-svg-core';
 
 import {faStore, faShoppingCart, faHome, faBlender, faCouch,
-   faBed, faShower, faRunning, faPlus, faTrash, faHeart} 
+   faBed, faShower, faRunning, faPlus, faTrash, faHeart, faPen} 
    from '@fortawesome/free-solid-svg-icons';
    
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CreateProduct from './components/Products/CreateProduct';
+import EditProduct from './components/Products/EditProduct';
 
 
 
-library.add(faStore, faShoppingCart, faHome, faBlender, faCouch, faBed, faShower, faRunning, faPlus, faTrash, faHeart);
+library.add(faStore, faShoppingCart, faHome, faBlender, faCouch, faBed, faShower, faRunning, faPlus, faTrash, faHeart, faPen);
 
 function App() {
   return (
@@ -30,8 +31,10 @@ function App() {
       <Route path="/productlist" component={ProductList}/>
       <Route path="/create" component={CreateProduct}/>
       <Route path="http://localhost:3001/new" component={CreateProduct}/>
+      <Route path="/update/:id" component={EditProduct}/>
+    
       
-     
+ 
       
     </Switch>
 

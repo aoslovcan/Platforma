@@ -46,6 +46,20 @@ server.get('/devices', function (req, res) {
   });
  });
 
+
+ server.get('/devices/:id', function (req, res) {
+
+  data = req.body;
+  console.log('Request URL:', req.originalUrl);
+  console.log('Request URL:', req.params.id);
+   
+  db.query('select * from devices WHERE devices_id = '+req.params.id+' ', function (error, results, fields) {
+  if (error) throw error;
+  res.end(JSON.stringify(results));
+  console.log('Uspješno');
+});
+});
+
  server.post('/delete',  function(req, res) {
     data = req.body;
 
@@ -61,18 +75,45 @@ server.get('/devices', function (req, res) {
    console.log("Deleted row");
   
  });
+ 
 
-
-  /* var sql ="INSERT INTO devices(name, price, description) VALUES('proizvod', 560, 'opis')"
-    db.query(sql, function (err, rows, fields) {
-       if (err) throw err
-       console.log("succses");
-
-    
-   });*/
+ 
 
 
 });
+
+server.post('/update',  function(req, res) {
+  data = req.body;
+
+  console.log(data);
+
+  /*x = data.map(m => m.devices_id);
+  name =data.map(m => m.name);
+  image =data.map(m => m.image);
+  price =data.map(m => m.price);
+  description = data.map(m => m.description);*/
+
+  //console.log(x.toString());
+
+ //var sql = "UPDATE devices SET name='"+data.name+"', price="+data.price+"', image="+ data.image +"', description="+ data.description +"' WHERE devices_id = "+ data.id +"'";
+
+ var sql = "UPDATE devices SET name='"+data.name+"', price='"+data.price+"' , image='"+data.image+"' , description='"+data.description+"' WHERE devices_id = '"+data.id+"'";
+
+  //var sql = "INSERT INTO devices(name, price) VALUES('"+ data.name +" ',' "+ data.price +")";
+
+ //var sql = "INSERT INTO devices (name, price, description) VALUES ('Company Inc', 500, 'Highway 37')";
+db.query(sql,  function (err, result) {
+ if (err) throw err;
+ console.log("Row updated");
+
+});
+window.location.href = 'http://localhost:3000/productlist';
+
+
+
+
+});
+
 
 
  server.post('/new',  function(req, res) {
