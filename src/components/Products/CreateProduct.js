@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
-
-import Button from 'react-bootstrap/Button'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Tooltip, Drawer } from 'antd';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-
-import { Toolbar, SimpleButton } from '@terrestris/react-geo';
-
-import axios from 'axios'
-import { createDevice } from '../../actions/createDevice';
-
+import {formValidate} from '../../actions/formValidate';
+import {createDevice} from '../../actions/createDevice'
 import './CreateProduct.css'
 
 
@@ -26,10 +16,6 @@ class CreateProduct extends Component {
       description: '',
       redirect: false,
       image: '',
-      nameError : '',
-      priceError : '',
-      urlError : '',
-      descError: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this);
 
@@ -41,82 +27,22 @@ class CreateProduct extends Component {
     })
   }
 
-  formValidate = () =>{
-    let name = this.state.name;
-    let price = this.state.price;
-    let url = this.state.image;
-   let description = this.state.description;
-
-    let nameError = "";
-    let priceError= "";
-    let urlError="";
-    let descError="";
-
-    if (!name){
-      nameError = 'Naziv mora biti unesen!';
-    }
-
-     if(!price){
-      priceError = 'Cijena mora biti unesena!';
-    }
-
-   if(!url){
-      urlError = 'Unesite url slike!';
-    }
-
-    if(!description){
-      descError = 'Opis proizvoda mora biti unesen!';
-     
-    }
-    this.setState({nameError, priceError, urlError, descError});
-
-    if(nameError || priceError || urlError || descError){
-     
-      return false;
-    }
-
-    return true;
-
-  };
-
-
-  handleSubmit(e) {
+   handleSubmit(e) {
     e.preventDefault();
     const data = this.state;
     console.log(data);
 
-    const isValid = this.formValidate();
+    //Form validation
+    const isValid = formValidate(data);
 
     console.log(isValid);
-
+    //Check validation 
     if(isValid){
-      fetch('http://localhost:3001/new', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: this.state.name,
-          price: this.state.price,
-          description: this.state.description,
-          image: this.state.image
-  
-        }),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
-  
-        .then((result) => {
-          console.log(result);
-  
-          this.setState({
-            redirect: true
-          });
-          window.location.href = 'http://localhost:3000/productlist';
-        })
+      /* Create data*/
+      
+      createDevice(data);
     }
-   
-    
-  }
+}
 
 
 
@@ -124,7 +50,7 @@ class CreateProduct extends Component {
 
   render() {
 
-    const { name, price, description, image, nameError, priceError, urlError, descError } = this.state
+    const { name, price, description, image} = this.state
     return (
       <>
         <div className="container" style={{ backgroundColor: '#343a40', borderRadius: '28px' }}>
@@ -144,7 +70,8 @@ class CreateProduct extends Component {
                       /*id="exampleInputEmail1" 
                       aria-describedby="emailHelp" */
                       placeholder="naziv" />
-                    {nameError ? (<span style={{color:'red'}}>{nameError}</span>) : null }
+                      <span id = "nameError" style={{color:'red'}}></span>
+                    {/*nameError ? (<span style={{color:'red'}}>{nameError}</span>) : null */}
                   </div>
                 </div>
                 <div className="form-group row">
@@ -156,7 +83,8 @@ class CreateProduct extends Component {
                       name="price"
                       className="form-control" /*id="exampleInputPassword1" */
                       placeholder="cijena" />
-                       {priceError ? (<span style={{color:'red'}}>{priceError}</span>) : null }
+                       <span id = "priceError" style={{color:'red'}}></span>
+                       {/*priceError ? (<span style={{color:'red'}}>{priceError}</span>) : null */}
                   </div>
                 </div>
                 <div className="form-group row">
@@ -168,7 +96,8 @@ class CreateProduct extends Component {
                       name="image"
                       className="form-control" /*id="exampleInputPassword1" */
                       placeholder="url slike" />
-                       {urlError ? (<span style={{color:'red'}}>{urlError}</span>) : null }
+                      <span id="urlError" style={{color:'red'}}></span>
+                       {/*urlError ? (<span style={{color:'red'}}>{urlError}</span>) : null */}
                   </div>
                 </div>
                 <div className="form-group row">
@@ -182,7 +111,8 @@ class CreateProduct extends Component {
                       placeholder="opis proizvoda">
                          
                     </textarea>
-                    {descError ? (<span style={{color:'red'}}>{descError}</span>) : null }
+                    <span id="descError" style={{color:'red'}}></span>
+                    {/*descError ? (<span style={{color:'red'}}>{descError}</span>) : null */}
                   </div>
                 </div>
                 <button type="submit" className="btn btn-outline-light"><strong>Unesi</strong></button>

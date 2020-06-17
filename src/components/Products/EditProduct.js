@@ -9,7 +9,7 @@ import FormControl from 'react-bootstrap/FormControl';
 import { Toolbar, SimpleButton } from '@terrestris/react-geo';
 
 import axios from 'axios'
-import { createDevice } from '../../actions/createDevice';
+
 
 
 
