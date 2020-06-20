@@ -20,22 +20,23 @@ export const Navigation = () => {
 return (
     <>
 
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
    <Link to="/"><Navbar.Brand><FontAwesomeIcon icon="store"></FontAwesomeIcon> React-Shop</Navbar.Brand></Link> 
   
 
     <Nav className="mr-auto">
     <Nav.Link href="/productlist"><strong>Uređaji</strong></Nav.Link>
-    <Nav.Link href="/create"><FontAwesomeIcon className="fa-lg" style={{border:'1px solid white', borderRadius:'50px', padding:'3px'}} icon="plus"/></Nav.Link>
-    </Nav>
-    <Nav>
+    
+ 
+  </Nav>
+    {/*<Nav>
     <Form inline>
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-light">Search</Button>
   
       
       </Form>
-    </Nav>
+    </Nav>*/}
   </Navbar>
 
 

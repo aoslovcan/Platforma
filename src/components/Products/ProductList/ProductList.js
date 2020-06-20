@@ -5,10 +5,12 @@ import { animations, easings } from 'react-animation';
 import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+import Nav from 'react-bootstrap/Nav';
 
 import { deleteProduct } from '../../../actions/deleteProduct';
 
 import './ProductList.css';
+import { none } from 'ol/centerconstraint';
 
 const style = {
     animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`
@@ -16,7 +18,8 @@ const style = {
 
 const title = {
     animation : animations.slideIn,
-    color: "black"
+    color: "black",
+    border: "none"
 }
 
 class ProductList extends Component {
@@ -93,7 +96,16 @@ class ProductList extends Component {
                 <>
                  
                     <div className="proizvodi">
-                        <h3 style={title}>Pametni uređaji iz kućanstva</h3>
+                       
+                        <div className="row">
+                            <div className="col-sm-12">
+                        <Nav.Link style={title} href="/create">
+                            <button title="Dodaj" className="delete" >
+                            <FontAwesomeIcon className="fa-lg" color="white" icon="plus"/>
+                            </button>
+                         </Nav.Link>
+                        </div>
+                        </div>
                         <div className="row" style={{ margin: '2px' }}>
 
                             {items.map((item) => (
@@ -105,27 +117,29 @@ class ProductList extends Component {
                                             </form>
 
                                         </li>
-                                        <li className="list-group-item">
-                                            <img style={{ maxWidth: '200px', width: '100%', height:'200px', textAlign:"center" }} src={item.image} />
+                                        <li className="list-group-item" style={{textAlign: 'center'}}>
+                                            <img style={{ maxWidth: '320px', width: '100%', height:'300px', textAlign:"center", borderRadius:'10px'}} src={item.image} />
                                         </li>
                                         <li className="list-group-item" >
-                                            {item.name}
+                                            <strong>{item.name}</strong>
                                         </li>
                                         <li className="list-group-item" >
                                             <strong>${item.price}</strong>
                                         </li>
                                         <li className="list-group-item" >
-                                            {item.description}
+                                            <strong>{item.description}</strong>
                                         </li>
-                                        <li className="list-group-item">
-                                            <button type="submit"
+                                        <li style={{textAlign: 'center'}} className="list-group-item">
+                                            <button title="Obriši" className="delete" type="submit"
                                                 onClick={() => this.setState({ id: item.devices_id },
                                                     this.deleteMember, window.location.reload(false)
                                                 )} >
-                                                <FontAwesomeIcon color="red" icon="trash" />
+                                                <FontAwesomeIcon color="white" size="1x" icon="trash" />
 
                                             </button>
-                                            <Link className="btn" to={`/update/${item.devices_id}`}> Edit</Link>
+                                            <Link  to={`/update/${item.devices_id}`}> <button title="Izmjeni" className="delete" >
+                                                <FontAwesomeIcon color="white" size="1x" icon="pen" />
+                                            </button></Link>
                                         </li>
                                     </ul>
                                 </div>
