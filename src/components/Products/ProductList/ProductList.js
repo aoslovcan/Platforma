@@ -9,11 +9,14 @@ import Nav from 'react-bootstrap/Nav';
 
 import { deleteProduct } from '../../../actions/deleteProduct';
 
+import ReactPaginate from 'react-paginate';
+
 import './ProductList.css';
 import { none } from 'ol/centerconstraint';
 
+
 const style = {
-    animation: `pop-in ${easings.easeOutExpo} 1000ms forwards`
+    animation: `pop-in ${easings.easeOutExpo} 1200ms forwards`
   }
 
 const title = {
@@ -79,7 +82,7 @@ class ProductList extends Component {
             console.log(name);
 
 
-            this.setState({items : value})
+            
     }
 
 
@@ -94,10 +97,9 @@ class ProductList extends Component {
 
             return (
                 <>
-                 
+             
                     <div className="proizvodi">
-                       
-                        <div className="row">
+                      
                             <div className="col-sm-12">
                         <Nav.Link style={title} href="/create">
                             <button title="Dodaj" className="delete" >
@@ -105,10 +107,9 @@ class ProductList extends Component {
                             </button>
                          </Nav.Link>
                         </div>
-                        </div>
+                      
                         <div className="row" style={{ margin: '2px' }}>
-
-                            {items.map((item) => (
+                            {items.map(item => (
                                 <div className="col-sm-3" key={item.devices_id} style={style}>
                                     <ul className="list-group" >
                                         <li className="list-group-item">
@@ -118,7 +119,7 @@ class ProductList extends Component {
 
                                         </li>
                                         <li className="list-group-item" style={{textAlign: 'center'}}>
-                                            <img style={{ maxWidth: '320px', width: '100%', height:'300px', textAlign:"center", borderRadius:'10px'}} src={item.image} />
+                                            <img style={{ maxWidth: '130px', width: '100%', height:'120px', textAlign:"center", borderRadius:'10px'}} src={item.image} />
                                         </li>
                                         <li className="list-group-item" >
                                             <strong>{item.name}</strong>
@@ -145,7 +146,12 @@ class ProductList extends Component {
                                 </div>
                             ))}
                         </div>
+                        <Pagination count={10} />
+      <Pagination count={10} color="primary" />
+      <Pagination count={10} color="secondary" />
+      <Pagination count={10} disabled />
                     </div>
+                 
                 </>
 
 

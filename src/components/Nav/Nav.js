@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -16,16 +16,23 @@ import './Nav.css';
 
 
 export const Navigation = () => {
+
+  let pathname = window.location.pathname;
+  useEffect(() => {
+      pathname = window.location.pathname;
+  }, [window.location.pathname]);
+
+
  
 return (
     <>
 
-    <Navbar  collapseOnSelect expand="lg" bg="dark" variant="dark">
-   <Link to="/"><Navbar.Brand><FontAwesomeIcon icon="store"></FontAwesomeIcon> React-Shop</Navbar.Brand></Link> 
+    <Navbar  id='navbar' collapseOnSelect expand="lg" bg="dark" variant="dark">
+  <Navbar.Brand> <Nav.Link style={{fontSize:'30px'}}href="/home" className={`${pathname.match('/home') ? 'link-active' : 'nav-link'}`} ><FontAwesomeIcon icon="store"></FontAwesomeIcon> React-Shop</Nav.Link> </Navbar.Brand>
   
 
     <Nav className="mr-auto">
-    <Nav.Link href="/productlist"><strong>Uređaji</strong></Nav.Link>
+    <Nav.Link href="/productlist" className={`${pathname.match('/productlist') ? 'link-active' : 'nav-link'}`}><strong>Uređaji</strong></Nav.Link>
     
  
   </Nav>

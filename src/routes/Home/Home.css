@@ -18,7 +18,50 @@
     margin: 2px;
 }
 
+.cover{
+    background-image: url('cover3.jpeg');
+    -webkit-background-size: cover;
+    background-size: cover;
+    height:100vh;
+    max-width: 100%;
+    width:100%;
+    position: fixed;
+    opacity: 0.9;
+    
+    
+}
+  
 
+
+.text{
+    color:white;
+    position: relative;
+    top:50%;
+    text-align: center;
+    line-height: 15px;
+    background-color: rgb(0, 0, 0, 0.4);
+    max-width: 530px;
+    margin: auto;
+    z-index: 5;
+    color: rgb(255, 255, 255);
+    border-radius: 12px;
+} 
+
+.text h1{
+    font-weight: bold;
+}
+.text h3{
+    font-weight: lighter;
+}
+#firstPic{
+
+    background-image: url('pic1.PNG');
+    background-repeat: no-repeat;
+    width: 172px;
+    height: 150px;
+    z-index: -2;
+    
+}
 
 
 

@@ -2,16 +2,21 @@
     background-color:  rgb(128, 128, 128, 0.4);
     padding: 1px;
     color : white;
-    height: 93vh;
+    height: 100vh;
+    margin-top: 90px;
     
 }
 
+.list-group{
+    margin-bottom: 5px;
+}
 
 
 ul{
    
     text-align: left;
     border: 1px solid rgb(0, 255, 255);
+    
 
 }
 
@@ -48,3 +53,32 @@ ul{
 .delete:hover{
     background-color: #009999;
 }
+
+#proizvod {
+    -webkit-appearance: none;
+    margin-right: .8rem ;
+    background-color: rgb(0, 153, 153) ;
+    width: 1.6rem ;
+    height: 1.6rem ;
+    border: 2px solid #363636;
+    padding: .7rem;
+    border-radius: 5px;
+    display: inline-block;
+    position: relative;
+    }
+ #proizvod:focus {
+        outline: none; }
+#proizvod:checked:after {
+        content: '\2713';
+        font-size: 1.3rem;
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        -webkit-appearance: none;
+        border: 1px solid #ffcd00;
+        border-radius: 5px;
+        color: #fff;
+        background-color: #ffcd00;
+        width: 1.8rem;
+        height: 1.8rem;
+        padding-left: 3px; }

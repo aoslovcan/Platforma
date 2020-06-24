@@ -24,10 +24,10 @@ function App() {
     <Router>
       
     <div className="App">
-   <Navigation/>
+    <Navigation/>
     <Switch>
 
-      <Route path="/" exact component={Home}/>
+      <Route path="/home"  component={Home}/>
       <Route path="/productlist" component={ProductList}/>
       <Route path="/create" component={CreateProduct}/>
       <Route path="http://localhost:3001/new" component={CreateProduct}/>
