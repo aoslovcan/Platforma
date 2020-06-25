@@ -28,11 +28,12 @@ return (
     <>
 
     <Navbar  id='navbar' collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand> <Nav.Link style={{fontSize:'30px'}}href="/home" className={`${pathname.match('/home') ? 'link-active' : 'nav-link'}`} ><FontAwesomeIcon icon="store"></FontAwesomeIcon> React-Shop</Nav.Link> </Navbar.Brand>
+  <Navbar.Brand> <Nav.Link style={{fontSize:'30px'}} href="/" className={`${pathname.match('/home') ? 'link-active' : 'nav-link'}`} ><FontAwesomeIcon icon="store"></FontAwesomeIcon> React-Shop</Nav.Link> </Navbar.Brand>
   
 
     <Nav className="mr-auto">
     <Nav.Link href="/productlist" className={`${pathname.match('/productlist') ? 'link-active' : 'nav-link'}`}><strong>Uređaji</strong></Nav.Link>
+    <Nav.Link href="/devices" className={`${pathname.match('/devices') ? 'link-active' : 'nav-link'}`}><strong>Shop</strong></Nav.Link>
     
  
   </Nav>

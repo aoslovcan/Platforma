@@ -9,6 +9,7 @@ import Nav from 'react-bootstrap/Nav';
 
 import { deleteProduct } from '../../../actions/deleteProduct';
 
+
 import ReactPaginate from 'react-paginate';
 
 import './ProductList.css';
@@ -33,12 +34,14 @@ class ProductList extends Component {
             isLoaded: false,
             redirect: false,
             id: "",
-            didMount: false
+            
         }
-    }
 
+         
+    }
+   
   
-    componentDidMount() {
+   componentDidMount() {
 
         fetch('http://localhost:3001/devices')
             .then(res => res.json())
@@ -146,11 +149,9 @@ class ProductList extends Component {
                                 </div>
                             ))}
                         </div>
-                        <Pagination count={10} />
-      <Pagination count={10} color="primary" />
-      <Pagination count={10} color="secondary" />
-      <Pagination count={10} disabled />
+                        
                     </div>
+                  
                  
                 </>
 
