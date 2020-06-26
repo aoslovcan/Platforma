@@ -15,6 +15,7 @@ import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import CreateProduct from './components/Products/CreateProduct';
 import EditProduct from './components/Products/EditProduct';
 import Devices from './components/client/Devices';
+import Footer from './components/Footer/Footer';
 
 
 
@@ -36,11 +37,11 @@ function App() {
       <Route path="/update/:id" component={EditProduct}/>
       <Route path="/devices" component={Devices}/>
     
-      
+   
  
       
     </Switch>
-
+    <Footer/>
     </div>
 
     </Router>

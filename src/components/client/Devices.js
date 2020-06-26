@@ -86,48 +86,47 @@ class Devices extends Component {
             <>
 
                 <div className="proizvodi">
-                    <div className="row" style={{margin:'0.5px'}}>
-                        <div className="col-sm-12">
-                        <ReactPaginate 
-                        previousLabel={<FontAwesomeIcon icon="arrow-left"/>}
-                        nextLabel={<FontAwesomeIcon icon="arrow-right"/>}
-                        breakLabel={"..."}
-                        breakClassName={"break-me"}
-                        pageCount={this.state.pageCount}
-                        marginPagesDisplayed={2}
-                        pageRangeDisplayed={5}
-                        onPageChange={this.handlePageClick}
-                        containerClassName={"pagination"}
-                        subContainerClassName={"pages pagination"}
-                        activeClassName={"active"} />
+                    <div className="row" style={{ margin: '0.5px' }}>
+                        <div className="col-sm-12"   style={{position: 'fixed', width: '100%', zIndex:'2'}}>
+                            <ReactPaginate
+                                previousLabel={<FontAwesomeIcon icon="arrow-left" />}
+                                nextLabel={<FontAwesomeIcon icon="arrow-right" />}
+                                breakLabel={"..."}
+                                breakClassName={"break-me"}
+                                pageCount={this.state.pageCount}
+                                marginPagesDisplayed={2}
+                                pageRangeDisplayed={5}
+                                onPageChange={this.handlePageClick}
+                                containerClassName={"pagination"}
+                                subContainerClassName={"pages pagination"}
+                                activeClassName={"active"} />
 
-                    </div>
                         </div>
-                   
-                    
-<div className="row" style={{margin:"2px"}}>
-  {items.map(item => (
-  <div className="col-sm-3" key={item.devices_id} style={style}>
-    <ul className="list-group" >
-      <li className="list-group-item">
-       
-      </li>
-      <li className="list-group-item" style={{ textAlign: 'center' }}>
-      <img style={{ maxWidth: '200px', width: '100%', height: '190px', textAlign: "center", borderRadius: '10px' }} src={item.image} />
-      </li>
-      <li className="list-group-item" >
-        <strong>{item.name}</strong>
-      </li>
-      <li className="list-group-item" >
-        <strong>${item.price}</strong>
-      </li>
-      
-     
-    </ul>
-  </div>
-  ))}
-</div>
-</div>
+                    </div>
+
+
+                    <div className="row" style={{ margin: "5px", height:'100vh', position:'relative', top:'60px' }}>
+                        {items.map(item => (
+                          <div className="col-sm-3" key={item.devices_id} style={style}>
+
+
+                                <div className="col-sm-12">
+                                    <img style={{ maxWidth: '300px', width: '100%', height: '290px', textAlign: "center", borderRadius: '10px' }} src={item.image} />
+
+                                </div>
+                                <div className="col-sm-12">
+                                    <h3>{item.name}</h3>
+
+
+                                    <strong><h5>${item.price}</h5></strong>
+                                </div>
+
+
+                            </div>
+                        
+                        ))}
+                    </div>
+                </div>
 
             </>
 
