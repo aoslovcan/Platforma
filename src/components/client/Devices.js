@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import Nav from 'react-bootstrap/Nav';
 import './Devices.css';
 
+import Modal from 'react-bootstrap/Modal'
 
 
 
@@ -25,6 +26,8 @@ const title = {
     border: "none"
 }
 
+
+
 class Devices extends Component {
     constructor(props) {
         super(props);
@@ -33,16 +36,30 @@ class Devices extends Component {
             isLoaded: false,
             redirect: false,
             id: "",
+            name: "",
+            price: "",
+            image : "",
+            description : "",
             offset: 0,
 
             perPage: 7,
-            currentPage: 0
-
+            currentPage: 0,
+            show: false
         }
-
-
+       
     }
 
+    showModal = e => {
+        this.setState({
+          show: !this.state.show
+        });
+      };
+
+      onClose = e => {
+        this.setState({
+            show: false
+          });
+      };
     receivedData() {
         axios
             .get('http://localhost:3001/devices')
@@ -79,13 +96,47 @@ class Devices extends Component {
         this.receivedData()
     }
 
+  add(id){
+
+console.log(id);
+
+    fetch('http://localhost:3001/devices/'+id+'')
+    .then(res => res.json())
+    
+    
+    .then(json =>{
+      let id = json.map(m => m.devices_id);
+      let name = json.map(m => m.name);
+      let price = json.map(m => m.price);
+      let image = json.map(m => m.image);
+      let description = json.map(m => m.description);
+        this.setState({
+            isLoaded:true,
+          
+            //items: json
+            id : id.toString(),
+            name : name.toString(),
+            price: price.toString(),
+            image: image.toString(),
+            description : description.toString()
+
+          
+
+        })
+     
+        
+    });
+  }
+
     render() {
         var { isLoaded, items, didMount } = this.state;
+       
+
 
         return (
             <>
 
-                <div className="proizvodi">
+            <div className="devices">
                     <div className="row" style={{ margin: '0.5px' }}>
                         <div className="col-sm-12"   style={{position: 'fixed', width: '100%', zIndex:'2'}}>
                             <ReactPaginate
@@ -104,8 +155,7 @@ class Devices extends Component {
                         </div>
                     </div>
 
-
-                    <div className="row" style={{ margin: "5px", height:'100vh', position:'relative', top:'60px' }}>
+                    <div className="row" style={{position: 'relative', top:'60px'}}>
                         {items.map(item => (
                           <div className="col-sm-3" key={item.devices_id} style={style}>
 
@@ -114,11 +164,10 @@ class Devices extends Component {
                                     <img style={{ maxWidth: '300px', width: '100%', height: '290px', textAlign: "center", borderRadius: '10px' }} src={item.image} />
 
                                 </div>
-                                <div className="col-sm-12">
-                                    <h3>{item.name}</h3>
-
-
-                                    <strong><h5>${item.price}</h5></strong>
+                                <div id="itemContent" className="col-sm-12">
+                                   
+                                    <strong><h5>{item.name} ${item.price}</h5></strong>
+                                    <button onClick={e => { this.showModal(); this.add(item.devices_id)}}>Open Modal</button>
                                 </div>
 
 
@@ -127,6 +176,18 @@ class Devices extends Component {
                         ))}
                     </div>
                 </div>
+
+                <Modal className="modal" onClose={this.showModal} show={this.state.show}>
+                    Message in Modal
+
+                    {this.state.name}
+                    <button className="delete" onClick={e => {this.onClose();}}
+          >
+            Close
+          </button>
+                </Modal>
+        
+  
 
             </>
 
