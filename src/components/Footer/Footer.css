@@ -2,13 +2,14 @@
 
     background-color:#343a40;
     height: 90px;
-    border: 2px solid rgb(0, 153, 153);
+    border-bottom: 2px solid rgb(0, 153, 153);
     color: rgb(255, 255, 255);
     padding: 4px;
     line-height: 60px;
-    position: fixed;
-    bottom: 0px;
+  
     width: 100%;
+    
+    text-align: center;
     
 
 }

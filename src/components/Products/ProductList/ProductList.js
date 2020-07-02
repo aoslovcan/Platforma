@@ -14,6 +14,7 @@ import ReactPaginate from 'react-paginate';
 
 import './ProductList.css';
 import { none } from 'ol/centerconstraint';
+import Footer from '../../Footer/Footer';
 
 
 const style = {
@@ -152,7 +153,7 @@ class ProductList extends Component {
                         
                     </div>
                   
-                 
+                 <Footer/>
                 </>
 
 

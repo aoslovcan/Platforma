@@ -18,6 +18,7 @@ import Modal from 'react-bootstrap/Modal'
 
 
 import { none } from 'ol/centerconstraint';
+import Footer from '../Footer/Footer';
 
 const style = {
     animation: `pop-in ${easings.easeOutExpo} 1200ms forwards`
@@ -139,32 +140,24 @@ class Devices extends Component {
         return (
             <>
 
+
+
                 <div className="devices">
-                    <div className="row" style={{ margin: '0.5px' }}>
-                        <div className="col-sm-12" style={{ position: 'fixed', width: '100%', zIndex: '2' }}>
-                            <ReactPaginate
-                                previousLabel={<FontAwesomeIcon icon="arrow-left" />}
-                                nextLabel={<FontAwesomeIcon icon="arrow-right" />}
-                                breakLabel={"..."}
-                                breakClassName={"break-me"}
-                                pageCount={this.state.pageCount}
-                                marginPagesDisplayed={2}
-                                pageRangeDisplayed={5}
-                                onPageChange={this.handlePageClick}
-                                containerClassName={"pagination"}
-                                subContainerClassName={"pages pagination"}
-                                activeClassName={"active"} />
+               
+                         
+                     
 
-                        </div>
-                    </div>
-
-                    <div className="row" style={{ position: 'relative', top: '60px' }}>
+                    <div id="devItem" className="row">
+                      
+                    {/*<div className="col-sm-12" style={{backgroundColor:'orange', height:'20px'}}>
+                               <h3>Naslov</h3>
+        </div>*/}
                         {items.map(item => (
-                            <div className="col-sm-3" key={item.devices_id} style={style}>
+                            <div id="item" className="col-sm-3" key={item.devices_id} style={style}>
 
 
                                 <div className="col-sm-12">
-                                    <img style={{ maxWidth: '300px', width: '100%', height: '290px', textAlign: "center", borderRadius: '10px' }} src={item.image} />
+                                    <img style={{ maxWidth: '299px', width: '100%', height: '290px', textAlign: "center", borderRadius: '10px' }} src={item.image} />
 
                                 </div>
                                 <div id="itemContent" className="col-sm-12">
@@ -177,56 +170,45 @@ class Devices extends Component {
                             </div>
 
                         ))}
+
                     </div>
+                    <div id="pagi" className="col-sm-12" >
+                        <ReactPaginate
+                            previousLabel={<FontAwesomeIcon icon="arrow-left" />}
+                            nextLabel={<FontAwesomeIcon icon="arrow-right" />}
+                            breakLabel={"..."}
+                            breakClassName={"break-me"}
+                            pageCount={this.state.pageCount}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={5}
+                            onPageChange={this.handlePageClick}
+                            containerClassName={"pagination"}
+                            subContainerClassName={"pages pagination"}
+                            activeClassName={"active"} />
+
+                    </div>
+
+                    <Footer />
                 </div>
 
-                <Modal   onClose={this.showModal} show={this.state.show}>
-              <Modal.Dialog>
+                <Modal style="" onClose={this.showModal} show={this.state.show}>
+
                     <Modal.Header >
                         <Modal.Title>{this.state.name}</Modal.Title>
                         <button className="delete" onClick={e => { this.onClose(); }}>X </button>
-                       
+
                     </Modal.Header>
 
                     <Modal.Body>
-                        <img src={this.state.image}/>
-                        
+                        <img src={this.state.image} />
+
                         <p>{this.state.description}</p>
                     </Modal.Body>
-                 <Modal.Footer>
-                    <strong> ${this.state.price}</strong>
-                 </Modal.Footer>
-                 
-         
-                    {/*<div className="content">
-                        <div className="row" style={{maxWidth:'600px'}}>
-                        <div className="col-sm-6">
-                        <img src={this.state.image} />     
-                        </div>
-                   <div className="col-sm-6">
-                       <ul className="list-group">
-                           <li className="list-group-item">
-                               <h3>{this.state.name}</h3>
-                           </li>
-                           <li className="list-group-item">
-                               <h5><strong>$</strong>{this.state.price}</h5>
-                           </li>
-                           <li></li>
-                           <li className="list-group-item">
-                              
-                               <p> Opis proizvoda: {this.state.description}</p>
-                           </li>
-                       </ul>
-                   
-                   
-                  
-                   </div>
-                   </div>
-                        </div>    */}
+                    <Modal.Footer>
+                        <strong> ${this.state.price}</strong>
+                    </Modal.Footer>
 
 
-
-</Modal.Dialog>
                 </Modal>
 
 

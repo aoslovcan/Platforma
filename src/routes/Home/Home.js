@@ -2,7 +2,7 @@ import React from 'react';
 
 import { animations, easings } from 'react-animation';
 
-
+import Footer from '../../components/Footer/Footer';
 
 import Button from 'react-bootstrap/Button'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,8 +33,13 @@ export const Home = (props) => {
                     <h3><strong>"</strong>Napravi svoju svakodnevnicu inovativnom<strong>"</strong></h3>
                    
                 </div>
-            
+                
             </div>
+            
+         
+          
+            
+           
         </>
     );
 }
