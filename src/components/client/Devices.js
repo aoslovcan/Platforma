@@ -12,6 +12,8 @@ import './Devices.css';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import nav_img from './nav_img.png';
+
 
 import Modal from 'react-bootstrap/Modal'
 
@@ -187,7 +189,7 @@ class Devices extends Component {
                             activeClassName={"active"} />
 
                     </div>
-
+                   
                     <Footer />
                 </div>
 
@@ -200,7 +202,7 @@ class Devices extends Component {
                     </Modal.Header>
 
                     <Modal.Body>
-                        <img src={this.state.image} />
+                       <img src={this.state.image} /> 
 
                         <p>{this.state.description}</p>
                     </Modal.Body>
